@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allisha's Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #ff758c;
+            --secondary: #ff7eb3;
+            --bg: #fff5f7;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg);
+            color: #444;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Welcome Screen --- */
+        #welcome {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-start {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,117,140,0.4);
+            transition: 0.3s;
+        }
+
+        .btn-start:hover { transform: scale(1.1); background: var(--secondary); }
+
+        /* --- Main Content (Hidden Initially) --- */
+        #main-content {
+            display: none;
+            padding: 50px 20px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .typing-container {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: var(--primary);
+            min-height: 120px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Gallery --- */
+        #gallery-section {
+            opacity: 0;
+            transition: 1.5s ease;
+            transform: translateY(30px);
+            margin-bottom: 50px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-3deg);
+            transition: 0.5s;
+        }
+
+        .photo-card:nth-child(even) { transform: rotate(3deg); }
+        .photo-card:hover { transform: rotate(0deg) scale(1.05); z-index: 10; }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* --- Final Wish --- */
+        #final-wish {
+            opacity: 0;
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 1.5s ease;
+            transform: translateY(30px);
+        }
+
+        /* --- Balloons --- */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            to { transform: translateY(-110vh) translateX(50px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome">
+        <h2 style="color: var(--primary); margin-bottom: 20px;">Wassup baby girl, here's something for you...</h2>
+        <button class="btn-start" onclick="mulaiSurprise()">Open here</button>
+    </div>
+
+    <div id="main-content">
+        
+        <div class="typing-container">
+            <span id="typed-text"></span>
+        </div>
+
+        <div id="gallery-section">
+            <h2 style="color: var(--primary); margin-bottom: 30px;">Cie udah 24 tahun ✨</h2>
+            <div class="gallery">
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/PzWYFqLj/Whats-App-Image-2026-02-27-at-15-01-54-1.jpg" alt="foto 1">
+                    <p>Birthday girl 🎂</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/35QFcSJn/Whats-App-Image-2026-02-27-at-15-01-54-2.jpg" alt="foto 2">
+                    <p>Inikah my ... ❤️</p>
+                </div>
+                <div class="photo-card">
+                    <img src="https://i.ibb.co/HL7XJm6w/Whats-App-Image-2026-02-27-at-15-01-54.jpg" alt="foto 3">
+                    <p>Princess Jagakarsa 👑</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="final-wish">
+            <h2 style="color: var(--primary); font-family: 'Dancing Script'; font-size: 2.5rem;">My Last Wish For You...</h2>
+            <p style="line-height: 1.6; font-size: 1.1rem;">
+                Semoga di umur kamu yang ke 24 ini, kamu bisa melakukan semua hal yang sebelumnya belum bisa kamu lakuin, i hope this year brings you closer to every dream you've chased. <br><br> Semoga kamu dikasih rezeki yang melimpah, diberkahi semua langkah kamu, dan selalu diberikan kesehatan.
+                 <br><br> I hope you are surrounded by good friends, supportive coworkers, and a family that always loves you. I'll always support you and follow you wherever you go al, because actually i'm the lucky one to be by your side in everything. <br>
+                
+                 <br> With all the love in the world, <br><strong>Fabian</strong>
+                
+            </p>
+            <p style="margin-top: 30px; font-weight: 600;">You deserve the absolute best, today and everyday!</p>
+        </div>
+
+    </div>
+
+    <script>
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+            balloon.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 6000);
+        }
+
+        function mulaiSurprise() {
+            // Hide Landing Page
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+
+            // Start Balloons & Confetti
+            setInterval(createBalloon, 600);
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Start Typing Animation
+            new Typed('#typed-text', {
+                strings: [
+                    'Happy birthday, Allisha! 🎉',
+                    'Wish you all the happiness in life',
+                    'Semoga tercapai semua harapan kamu',
+                    'I Love You to the moon and back❤️'
+                ],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 1000,
+                showCursor: false,
+                onComplete: function() {
+                    // done
+                    tampilkanGaleri();
+                }
+            });
+        }
+
+        function tampilkanGaleri() {
+            const gallery = document.getElementById('gallery-section');
+            gallery.style.opacity = '1';
+            gallery.style.transform = 'translateY(0)';
+            
+            // Show final wish after a small delay
+            setTimeout(() => {
+                const wish = document.getElementById('final-wish');
+                wish.style.opacity = '1';
+                wish.style.transform = 'translateY(0)';
+                
+                // Smooth scroll to the wish
+                setTimeout(() => {
+                    wish.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
